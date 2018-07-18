@@ -21,6 +21,7 @@ RUN yum install -y nginx-${NGINX_VERSION} && \
     rm /etc/yum.repos.d/nginx.repo
 
 COPY . /var/lib/nginx/
+RUN chown 1001 /var/lib/nginx/reload-nginx && chmod a+x /var/lib/nginx/reload-nginx
 
 LABEL io.k8s.display-name="OpenShift Origin NGINX Router" \
       io.k8s.description="This is a component of OpenShift Origin and contains an NGINX instance that automatically exposes services within the cluster through routes, and offers TLS termination, reencryption, or SNI-passthrough on ports 80 and 443."
